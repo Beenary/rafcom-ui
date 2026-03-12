@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge-log-events",
+  "title": "Badge Log Events Status",
+  "description": "Maps inventory event types to colored icon badges. Accepts translations as prop.",
+  "dependencies": [
+    "@tabler/icons-react"
+  ],
+  "registryDependencies": [
+    "badge"
+  ],
+  "files": [
+    {
+      "path": "registry/badge-log-events/badge-log-events-status.tsx",
+      "content": "import * as React from \"react\"\nimport { Badge } from \"@/components/ui/badge\"\nimport {\n  IconCircleCheck,\n  IconEdit,\n  IconRestore,\n  IconCirclePlus,\n  IconX,\n  IconBellX,\n  IconCalculator,\n  IconBellPlus,\n  IconBellCheck,\n  IconArrowsExchange,\n} from \"@tabler/icons-react\"\n\n// Default icon/color mapping keyed by event type string.\n// Consumers can extend or override via the `iconMap` prop.\nexport interface EventIconConfig {\n  icon: React.ElementType\n  color: string\n}\n\nexport type DefaultEventType =\n  | \"STOCK_CREATED\"\n  | \"RECOUNT\"\n  | \"QUANTITY_ADJUSTED\"\n  | \"UPDATED_FIELDS\"\n  | \"DELETED\"\n  | \"MM_QUANTITY_ADJUSTED\"\n  | \"MM_CREATED\"\n  | \"FINDING_CREATED\"\n  | \"FINDING_DELETED\"\n  | \"RECOUNT_REQUESTED\"\n  | \"RECOUNT_ASSIGNED\"\n  | \"FINDING_RESOLVED\"\n  | \"MM_BALANCE_ADJUSTED\"\n\nconst DEFAULT_ICON_MAP: Record<string, EventIconConfig> = {\n  STOCK_CREATED: {\n    icon: IconCircleCheck,\n    color: \"text-green-500 dark:text-green-400\",\n  },\n  RECOUNT: {\n    icon: IconRestore,\n    color: \"text-yellow-500 dark:text-yellow-400\",\n  },\n  QUANTITY_ADJUSTED: {\n    icon: IconEdit,\n    color: \"text-blue-500 dark:text-blue-400\",\n  },\n  DELETED: {\n    icon: IconX,\n    color: \"text-red-500 dark:text-red-400\",\n  },\n  MM_QUANTITY_ADJUSTED: {\n    icon: IconEdit,\n    color: \"text-yellow-500 dark:text-yellow-400\",\n  },\n  MM_CREATED: {\n    icon: IconCirclePlus,\n    color: \"text-green-500 dark:text-green-400\",\n  },\n  FINDING_DELETED: {\n    icon: IconBellX,\n    color: \"text-red-500 dark:text-red-400\",\n  },\n  RECOUNT_REQUESTED: {\n    icon: IconCalculator,\n    color: \"text-blue-500 dark:text-blue-400\",\n  },\n  RECOUNT_ASSIGNED: {\n    icon: IconCalculator,\n    color: \"text-yellow-500 dark:text-yellow-400\",\n  },\n  FINDING_CREATED: {\n    icon: IconBellPlus,\n    color: \"text-green-500 dark:text-green-400\",\n  },\n  FINDING_RESOLVED: {\n    icon: IconBellCheck,\n    color: \"text-green-500 dark:text-green-400\",\n  },\n  UPDATED_FIELDS: {\n    icon: IconEdit,\n    color: \"text-blue-500 dark:text-blue-400\",\n  },\n  MM_BALANCE_ADJUSTED: {\n    icon: IconArrowsExchange,\n    color: \"text-yellow-500 dark:text-yellow-400\",\n  },\n}\n\nexport interface BadgeLogEventsStatusProps {\n  /** The event type string to render (e.g. \"STOCK_CREATED\"). */\n  eventType: string\n  /**\n   * Human-readable labels keyed by event type.\n   * If a label is not provided for a given event type, the raw eventType string is shown.\n   */\n  translations?: Record<string, string>\n  /**\n   * Override or extend the default icon/color map for specific event types.\n   * Merged on top of the built-in defaults.\n   */\n  iconMap?: Record<string, EventIconConfig>\n  className?: string\n}\n\nfunction cn(...classes: (string | undefined | false | null)[]) {\n  return classes.filter(Boolean).join(\" \")\n}\n\nexport function BadgeLogEventsStatus({\n  eventType,\n  translations,\n  iconMap,\n  className,\n}: BadgeLogEventsStatusProps) {\n  const resolvedIconMap = iconMap\n    ? { ...DEFAULT_ICON_MAP, ...iconMap }\n    : DEFAULT_ICON_MAP\n\n  const config = resolvedIconMap[eventType]\n  const Icon = config?.icon\n  const label = translations?.[eventType] ?? eventType\n\n  return (\n    <Badge\n      variant=\"outline\"\n      className={cn(\n        \"text-muted-foreground px-1.5 flex gap-2 w-fit whitespace-nowrap shrink-0\",\n        className\n      )}\n    >\n      {Icon && (\n        <Icon\n          className={cn(config.color)}\n          size={12}\n        />\n      )}\n      {label}\n    </Badge>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}
