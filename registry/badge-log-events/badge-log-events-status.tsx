@@ -11,6 +11,7 @@ import {
   IconBellPlus,
   IconBellCheck,
   IconArrowsExchange,
+  IconAlertCircle,
 } from "@tabler/icons-react"
 
 // Default icon/color mapping keyed by event type string.
@@ -34,6 +35,12 @@ export type DefaultEventType =
   | "RECOUNT_ASSIGNED"
   | "FINDING_RESOLVED"
   | "MM_BALANCE_ADJUSTED"
+  | "VENDOR_NOT_COUNTED"
+  | "DISCREPANCY_IN_PROCESS"
+  | "DISCREPANCY_REGISTERED"
+  | "DISCREPANCY_CONFIRMED"
+  | "DISCREPANCY_CANCELLED"
+  | "DISCREPANCY_CLOSED"
 
 const DEFAULT_ICON_MAP: Record<string, EventIconConfig> = {
   STOCK_CREATED: {
@@ -87,6 +94,30 @@ const DEFAULT_ICON_MAP: Record<string, EventIconConfig> = {
   MM_BALANCE_ADJUSTED: {
     icon: IconArrowsExchange,
     color: "text-yellow-500 dark:text-yellow-400",
+  },
+  VENDOR_NOT_COUNTED: {
+    icon: IconAlertCircle,
+    color: "text-blue-500 dark:text-blue-400",
+  },
+  DISCREPANCY_IN_PROCESS: {
+    icon: IconAlertCircle,
+    color: "text-blue-500 dark:text-blue-400",
+  },
+  DISCREPANCY_REGISTERED: {
+    icon: IconAlertCircle,
+    color: "text-blue-500 dark:text-blue-400",
+  },
+  DISCREPANCY_CONFIRMED: {
+    icon: IconAlertCircle,
+    color: "text-blue-500 dark:text-blue-400",
+  },
+  DISCREPANCY_CANCELLED: {
+    icon: IconAlertCircle,
+    color: "text-red-500 dark:text-red-400",
+  },
+  DISCREPANCY_CLOSED: {
+    icon: IconAlertCircle,
+    color: "text-green-500 dark:text-green-400",
   },
 }
 
