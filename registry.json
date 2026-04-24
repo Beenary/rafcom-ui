@@ -74,6 +74,37 @@
         { "path": "registry/data-table/data-table-pagination.tsx", "type": "registry:component" },
         { "path": "registry/data-table/data-table-view-options.tsx", "type": "registry:component" }
       ]
+    },
+    {
+      "name": "use-url-params",
+      "type": "registry:hook",
+      "title": "useURLParams",
+      "description": "Debounced URL search param manager for Next.js. Batches updates, supports DateRange, arrays, and auto page-reset.",
+      "dependencies": ["next", "react-day-picker", "date-fns"],
+      "files": [
+        { "path": "registry/use-url-params/use-url-params.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "confirm-action-alert",
+      "type": "registry:component",
+      "title": "Confirm Action Alert",
+      "description": "Alert banner with an inline confirmation dialog. Supports custom action slot for alternative confirmation patterns.",
+      "registryDependencies": ["alert", "alert-dialog", "button"],
+      "files": [
+        { "path": "registry/confirm-action-alert/confirm-action-alert.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "table-pagination",
+      "type": "registry:component",
+      "title": "Table Pagination",
+      "description": "Server-side pagination that reads and writes page/pageSize from URL search params. Designed for Next.js App Router.",
+      "registryDependencies": ["pagination"],
+      "dependencies": ["next", "lucide-react"],
+      "files": [
+        { "path": "registry/table-pagination/table-pagination.tsx", "type": "registry:component" }
+      ]
     }
   ]
 }
